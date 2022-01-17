@@ -7,36 +7,18 @@ namespace Guess_number
         static void Main(string[] args)
         {
 
-            Console.WriteLine("Welcome to Guess The Number!");
-            Console.WriteLine("Made by ISPlayz");
+            string welcome = ("Welcome to Guess The Number!");
+            Console.SetCursorPosition((Console.WindowWidth - welcome.Length) / 2, Console.CursorTop);
+            Console.WriteLine(welcome);
+            string creator = ("Made by ISPlayz");
+            Console.SetCursorPosition((Console.WindowWidth - creator.Length) / 2, Console.CursorTop);
+            Console.WriteLine(creator);
 
-            bool invalid = true;
-
-            while (invalid)
-            {
-                Console.Write("Type yes to start the game and no to exit: ");
-                string start = Console.ReadLine();
-                if (start == "yes")
-                {
-                    Console.WriteLine("Let's start then!");
-                    invalid = false;
-                }
-                else if (start == "no")
-                {
-                    Environment.Exit(0);
-                    invalid = false;
-                }
-                else
-                {
-                    Console.WriteLine("Please type only yes or no");
-                    invalid = true;
-                }
-            }
             Random random = new Random();
             int number = random.Next(1, 100);
             int tries = 0;
             int userguess = 0;
-            Console.Write("Pick a number between 1 and 100: ");
+            Console.Write("\nPick a number between 1 and 100: ");
 
             while (userguess != number)
             {
@@ -46,22 +28,25 @@ namespace Guess_number
                     
                     if (userguess > number)
                 {
-                    Console.WriteLine("The number is lower");
+                    Console.WriteLine($"The number is lower than {userguess}");
+                    Console.Write("\nPick another number between 1 and 100: ");
                 }
-                else
+                else 
                 {
-                    Console.WriteLine("The number is higher");
+                    Console.WriteLine($"The number is higher than {userguess}");
+                    Console.Write("\nPick another number between 1 and 100: ");
                 }
             }
           catch
             {
-                Console.WriteLine("Please type a number between 1 and 100: ");
+                Console.WriteLine("\nPlease type a number between 1 and 100: ");
                 tries--;
             }
 
             tries++;
         }
-            Console.WriteLine($"Well done! The number was {number} and it took you {tries} tries!");
+            Console.Clear();
+            Console.WriteLine($"\nWell done! The number was {number} and it took you {tries} tries!");
         }
     }
 }
